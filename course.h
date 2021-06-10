@@ -35,8 +35,10 @@ class Course{
 		// the student should not be already enrolled in the course
 		// this function must also add itself to the course_list of the student
 		void enroll(Student* S_obj);
+
 		// looks up the student id in the student list and removes the student from the student list and also updates the course list of the student object, be carefull with the sequence of how you do this.
 		void withdraw(string uid);
+		
 		// modifies the grade of the student in the course. note that the grade must be updated in the course object and the corresponding student object
 		void update_grade(string uid, double g);
 		//return course info
