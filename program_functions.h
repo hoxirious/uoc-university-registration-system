@@ -59,5 +59,9 @@ void update_grade(string sid, string cid, vector<Student> &slist, vector<Course>
 void modify_output(vector<Student> &slist, vector<Course> &clist){}
 
 // note: you can define supporting functions similar to find_student and find_course which do not correspond to an option in the main menu directly
+// note: you can define supporting functions similar to find_student and find_course which do not correspond to an option in the main menu directly
+// note: you can define supporting functions similar to find_student and find_course which do not correspond to an option in the main menu directly
+// note: you can define supporting functions similar to find_student and find_course which do not correspond to an option in the main menu directly
+// note: you can define supporting functions similar to find_student and find_course which do not correspond to an option in the main menu directly
 
 #endif
