@@ -18,7 +18,7 @@ string Student::get_phone() {}
 string Student::get_ID() {}
 Date Student::get_Date() {}
 
-void Student::add_course(Course *course_to_add, double g){}
-void Student::drop_course(Course *course_to_drop){}
-void Student::modify_grade(Course *course_to_add, double grade_update){}
-string Student::student_info(){}
+void Student::add_course(Course *course_to_add, double g) {}
+void Student::drop_course(Course *course_to_drop) {}
+void Student::modify_grade(Course *course_to_add, double grade_update) {}
+string Student::student_info() {}

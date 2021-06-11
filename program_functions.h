@@ -3,11 +3,12 @@
 
 #include <iostream>
 #include <fstream>
+#include <string>
 #include "course.h"
 #include "student.h"
 #include "date.h"
-
 using namespace std;
+
 // function to show main menue and prompt the user to select input option
 int main_menu();
 
@@ -20,14 +21,16 @@ int load_coursefile(string filename, vector<Course> &clist);
 // function to open file using file stream and extract student information in the file.
 int load_studentfile(string filename, vector<Student> &slist);
 
-// search function that finds a student object in the vector of students using the student id and return a pointer to the student object
+// search function that finds a student object in the vector of students 
+// using the student id and return a pointer to the student object
 Student *find_student(string id, vector<Student> &student_list);
 
 // search function that finds a course object in the vector of students using the course id and returns a pointer to the course object
 Course *find_course(string cid, vector<Course> &course_list);
 
-// function to open enrollment file using a file stream and extracts student enrollment into courses information. must update the course objects
-// to include the student in the student list, and update the student object to have the course in enrolled courses list
+// function to open enrollment file using a file stream and extracts student enrollment 
+// into courses information. must update the course objects to include the student in the 
+//student list, and update the student object to have the course in enrolled courses list
 int enrollment_file(string filename, vector<Course> &clist, vector<Student> &slist);
 
 // function that take course id and displays the string return of the course object
@@ -56,7 +59,7 @@ void update_grade(string sid, string cid, vector<Student> &slist, vector<Course>
 
 //11. save changes will modify courses.txt, students.txt, and enroll.txt to reflect any changes that were made during the program run
 //(i.e. new students added, course added, and new enrolments .... etc)
-void modify_output(vector<Student> &slist, vector<Course> &clist){}
+void modify_output(vector<Student> &slist, vector<Course> &clist) {}
 
 // note: you can define supporting functions similar to find_student and find_course which do not correspond to an option in the main menu directly
 // note: you can define supporting functions similar to find_student and find_course which do not correspond to an option in the main menu directly

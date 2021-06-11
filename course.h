@@ -5,6 +5,7 @@
 #include "student.h"
 #include <vector>
 
+
 class Student;
 
 struct student_record{
@@ -49,7 +50,7 @@ class Course{
 		//Capacity: 70
 		//Enrolled: 0
 		//List of students:
-		//        Student name    Grade
+		//Student name    Grade
 
 		
 };
