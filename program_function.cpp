@@ -82,8 +82,40 @@ Student create_student()
     Student new_student(first, last, cell, uid, Date(year, month, date));
 }
 
-void enroll_to_course(string sid, string cid, vector<Student> &slist, vector<Course> &clist) {
+void enroll_to_course(string sid, string cid, vector<Student> &slist, vector<Course> &clist)
+{
+    //Pointer to objects
+    Student* student = find_student(sid, slist);
+    Course * course = find_course(cid, clist); 
 
+    if(student == NULL||course == NULL) {
+        cout << "The student or course is invalid." << endl;
+        exit(1);
+    }
+    //add course to student object
+    if (slist.empty())
+    {
+        cout << "The student has not been registed! Please add student to database." << endl;
+        exit(1);
+    }
+    else {
+        student->add_course(course,0.0);
+    }
+    //enroll student to course object
+    if (clist.empty())
+    {
+        cout << "The course does not exist! Please create course." << endl;
+        exit(1);
+    }
+    else {
+        course->enroll(student);
+    }
+
+
+
+    //enroll student to course
+
+    //
 }
 
 void withdraw_from_course(string sid, string cid, vector<Student> &slist, vector<Course> &clist) {}

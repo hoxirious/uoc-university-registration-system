@@ -30,7 +30,7 @@ Course *find_course(string cid, vector<Course> &course_list);
 
 // function to open enrollment file using a file stream and extracts student enrollment 
 // into courses information. must update the course objects to include the student in the 
-//student list, and update the student object to have the course in enrolled courses list
+// student list, and update the student object to have the course in enrolled courses list
 int enrollment_file(string filename, vector<Course> &clist, vector<Student> &slist);
 
 // function that take course id and displays the string return of the course object
