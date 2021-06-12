@@ -45,9 +45,17 @@ Student create_student();
 void enroll_to_course(string sid, string cid,vector<Student>& slist,vector<Course>& clist);
 
 // functions to add for options 9 through 11
-//9. function that takes a student id and course id, looks up the student in the course student list and if  found removes the student from the course. parameters needed might be more than just student id adn course id
-//10. update student grade that takes a student id, course id, and grade to update the student grade in a given course. note that parameters needed might be more than the three specified
-//11. save changes will modify courses.txt, students.txt, and enroll.txt to reflect any changes that were made during the program run (i.e. new students added, course added, and new enrolments .... etc)
+//9. function that takes a student id and course id, looks up the student in the course student list and if  found removes the student from the course.
+// parameters needed might be more than just student id and course id
+void withdraw_from_course(string sid, string cid, vector<Student> &slist, vector<Course> &clist);
+
+//10. update student grade that takes a student id, course id, and grade to update the student grade in a given course. note that parameters needed
+// might be more than the three specified
+void update_grade(string sid, string cid, int new_grade, vector<Student> &slist, vector<Course> &clist);
+
+//11. save changes will modify courses.txt, students.txt, and enroll.txt to reflect any changes that were made during the program run
+//(i.e. new students added, course added, and new enrolments .... etc)
+void modify_output(vector<Student> &slist, vector<Course> &clist);
 
 // note: you can define supporting functions similar to find_student and find_course which do not correspond to an option in the main menu directly
 // note: you can define supporting functions similar to find_student and find_course which do not correspond to an option in the main menu directly

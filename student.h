@@ -50,10 +50,13 @@ public:
 
 	// function to add a course record to the vector course_list. to be called by the course object
 	void add_course(Course *course_to_add, double g);
+	
 	// removes a course from the course list. to be called by the course object
 	void drop_course(Course *course_to_drop);
+	
 	// function to modify a grade for a given course name. to be called by the course object
 	void modify_grade(Course *course_to_add, double grade_update);
+	
 	// returns a formated string of the student information. the format follows the example provided in the suplementary material
 	string student_info();
 	// Student id:
