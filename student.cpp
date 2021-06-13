@@ -18,6 +18,7 @@ void Student::set_Lname(string ln) {}
 void Student::set_phone(string cell) {}
 void Student::set_ID(string uid) {}
 void Student::set_Date(Date bd) {}
+void Student::set_course_list(vector <course_record>) {}
 
 string Student::get_Fname()
 {

@@ -40,6 +40,7 @@ public:
 	void set_phone(string cell);
 	void set_ID(string uid);
 	void set_Date(Date bd);
+    void set_course_list (vector <course_record> course_list);
 
 	//getters
 	string get_Fname();
@@ -47,13 +48,17 @@ public:
 	string get_phone();
 	string get_ID();
 	Date get_Date();
+	vector <course_record> get_course_list();
 
 	// function to add a course record to the vector course_list. to be called by the course object
 	void add_course(Course *course_to_add, double g);
+	
 	// removes a course from the course list. to be called by the course object
 	void drop_course(Course *course_to_drop);
+	
 	// function to modify a grade for a given course name. to be called by the course object
 	void modify_grade(Course *course_to_add, double grade_update);
+	
 	// returns a formated string of the student information. the format follows the example provided in the suplementary material
 	string student_info();
 	// Student id:
