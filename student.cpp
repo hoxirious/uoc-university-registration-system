@@ -21,6 +21,39 @@ Date Student::get_Date() {}
 vector <course_record> Student::get_course_list() {}
 
 void Student::add_course(Course *course_to_add, double g){}
+
 void Student::drop_course(Course *course_to_drop){}
-void Student::modify_grade(Course *course_to_add, double grade_update){}
-string Student::student_info(){}
+
+void Student::modify_grade(Course *course_to_add, double grade_update){
+    for (int i = 0; i < course_list.size(); ++i) {
+        if (course_list[i].reg_course->get_cid() == course_to_add->get_cid()) {
+            course_list[i].grade = grade_update;
+        }
+    }
+}
+
+string Student::student_info(){
+    string si("Student ID: ");
+    si.append(ID);
+    si.append("\nFirst Name: ");
+    si.append(Fname);
+    si.append(" Last name: ");
+    si.append(Lname);
+    si.append("\nConstant number: ");
+    si.append(phone);
+    si.append("\nDate of Birth: ");
+    si += birthday.get_month();
+    si += '/';
+    si += birthday.get_day();
+    si += '/';
+    si += birthday.get_year();
+    si.append("\nCourse list:\n");
+    si.append("     Course Name     Grade\n");
+    for (int i = 0; i < course_list.size(); ++i) {
+        si.append("     ");
+        si.append(course_list[i].reg_course->get_cid());
+        si.append("     ");
+        si += course_list[i].grade;
+        si.append("\n");
+    }
+}
