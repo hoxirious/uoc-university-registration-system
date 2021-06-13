@@ -85,11 +85,7 @@ string Student::student_info()
     si.append("\nConstant number: ");
     si.append(phone);
     si.append("\nDate of Birth: ");
-    si += birthday.get_month();
-    si += '/';
-    si += birthday.get_day();
-    si += '/';
-    si += birthday.get_year();
+    si.append(birthday.date_string());
     si.append("\nCourse list:\n");
     si.append("     Course Name     Grade\n");
     for (int i = 0; i < course_list.size(); ++i)
