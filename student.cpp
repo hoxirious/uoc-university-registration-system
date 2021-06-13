@@ -12,16 +12,16 @@ int Student::find_course(string c_name)
     return -1;
 }
 
-Student::Student(): Fname(""), Lname("") ,ID(""), phone("")  {
+Student::Student(): ID(""), Fname(""), Lname("") , phone("")  {
     birthday.set_day(0);
     birthday.set_month(0);
     birthday.set_year(0);
 }
 Student::Student(string first, string last, string cell, string uid, Date birth) {
+    set_ID(uid);
     set_Fname(first);
     set_Lname(last);
     set_phone(cell);
-    set_ID(uid);
     set_Date(birth);
 }
 Student::~Student() {}

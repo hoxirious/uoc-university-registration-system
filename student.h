@@ -21,10 +21,10 @@ struct course_record
 class Student
 {
 private:
+    string ID;
 	string Fname;
 	string Lname;
 	string phone;
-	string ID;
 	Date birthday;
 	vector<course_record> course_list;
 	// function to find course name in the course_list. useful for the modify grade function
