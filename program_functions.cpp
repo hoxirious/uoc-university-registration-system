@@ -26,6 +26,12 @@ int main_menu()
     return input;
 }
 
+void pressEnter()
+{
+    cout << "\n<<< Press Enter to Continue>>>\n";
+    cin.get();
+}
+
 // cleans leftovers in the input buffer after any input operation
 void buffer_cleaner()
 {
