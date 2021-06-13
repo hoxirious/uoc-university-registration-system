@@ -5,6 +5,7 @@
 #include <string>
 #include "date.h"
 #include "course.h"
+#include <iostream>
 
 using namespace std;
 

@@ -13,11 +13,12 @@ void Course::enroll(Student *S_obj) {}
 void Course::withdraw(string uid) {}
 
 void Course::update_grade (string uid, double g) {
-    for (int i = 0; i < student_list.size(); ++i) {
-        if (student_list[i].student->get_ID() == uid) {
-            student_list[i].grade = g;
-        } 
+    int j = find_student (uid);
+    if (j == -1) {
+        cout << "Error: Course not found" << endl;
+        return;
     }
+    student_list[j].grade = g;
 }
 
 string Course::course_info() {

@@ -25,11 +25,12 @@ void Student::add_course(Course *course_to_add, double g){}
 void Student::drop_course(Course *course_to_drop){}
 
 void Student::modify_grade(Course *course_to_add, double grade_update){
-    for (int i = 0; i < course_list.size(); ++i) {
-        if (course_list[i].reg_course->get_cid() == course_to_add->get_cid()) {
-            course_list[i].grade = grade_update;
-        }
+    int j = find_course(course_to_add->get_cid());
+    if (j == -1) {
+        cout << "Error: Course not found" << endl;
+        return;
     }
+    course_list[j].grade = grade_update;
 }
 
 string Student::student_info(){
