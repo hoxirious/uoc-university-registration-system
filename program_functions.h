@@ -3,7 +3,9 @@
 
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
 #include <string>
+#include <iomanip>
 #include "course.h"
 #include "student.h"
 #include "date.h"
@@ -15,7 +17,8 @@ int main_menu();
 // cleans leftovers in the input buffer after any input operation
 void buffer_cleaner();
 
-// function to open file using file stream and extract course information in the file. the extraction is based on the file format provided in the supporting materials document
+// function to open file using file stream and extract course information in the file. 
+// the extraction is based on the file format provided in the supporting materials document
 int load_coursefile(string filename, vector<Course> &clist);
 
 // function to open file using file stream and extract student information in the file.
@@ -57,14 +60,10 @@ void withdraw_from_course(string sid, string cid, vector<Student> &slist, vector
 // might be more than the three specified
 void update_grade(string sid, string cid, vector<Student> &slist, vector<Course> &clist);
 
-//11. save changes will modify courses.txt, students.txt, and enroll.txt to reflect any changes that were made during the program run
-//(i.e. new students added, course added, and new enrolments .... etc)
+//11. save changes will modify courses.txt, students.txt, and enroll.txt to reflect any changes 
+//that were made during the program run (i.e. new students added, course added, and new enrolments .... etc)
 void modify_output(vector<Student> &slist, vector<Course> &clist) {}
 
-// note: you can define supporting functions similar to find_student and find_course which do not correspond to an option in the main menu directly
-// note: you can define supporting functions similar to find_student and find_course which do not correspond to an option in the main menu directly
-// note: you can define supporting functions similar to find_student and find_course which do not correspond to an option in the main menu directly
-// note: you can define supporting functions similar to find_student and find_course which do not correspond to an option in the main menu directly
 // note: you can define supporting functions similar to find_student and find_course which do not correspond to an option in the main menu directly
 
 #endif

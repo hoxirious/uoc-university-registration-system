@@ -3,10 +3,50 @@
 #include <fstream>
 #include <string>
 
-int main_menu() {}
 
-void buffer_cleaner() {}
-int load_coursefile(string filename, vector<Course> &clist) {}
+
+int main_menu()
+{
+    int input;
+    cout << "Please select one of the following operations\n"
+         << setw(5) << "1. Load students list file" << endl
+         << setw(5) << "2. Load courses file" << endl
+         << setw(5) << "3. Enroll from file" << endl
+         << setw(5) << "4. Show course details" << endl
+         << setw(5) << "5. Show student details" << endl
+         << setw(5) << "6. Create course" << endl
+         << setw(5) << "7. Add student to database" << endl
+         << setw(5) << "8. Enroll student to course" << endl
+         << setw(5) << "9. Withdraw student from course" << endl
+         << setw(5) << "10. Update student grade" << endl
+         << setw(5) << "11. Save changes" << endl
+         << setw(5) << "12. Exit" << endl;
+    cin >> input;
+    buffer_cleaner();
+    return input;
+}
+
+void buffer_cleaner()
+{
+    // char ch;
+    // DO NOT USE char! If the range of char is 0 to 255, comparison
+    // with EOF may fail.
+    int ch;
+    do
+    {
+        ch = getchar();
+    } while (ch != '\n' && ch != EOF);
+
+    if (ch == EOF)
+    {
+        printf("\nSorry, end of input was detected. Quitting.\n");
+        exit(1);
+    }
+}
+
+int load_coursefile(string filename, vector<Course> &clist)
+{
+}
 int load_studentfile(string filename, vector<Student> &slist) {}
 Student *find_student(string id, vector<Student> &student_list) {}
 Course *find_course(string cid, vector<Course> &course_list) {}
@@ -84,11 +124,12 @@ Student create_student()
 
 void enroll_to_course(string sid, string cid, vector<Student> &slist, vector<Course> &clist)
 {
-    //Pointer to objects
-    Student* student = find_student(sid, slist);
-    Course * course = find_course(cid, clist); 
+    //initialize pointers to objects
+    Student *student = find_student(sid, slist);
+    Course *course = find_course(cid, clist);
 
-    if(student == NULL||course == NULL) {
+    if (student == NULL || course == NULL)
+    {
         cout << "The student or course is invalid." << endl;
         exit(1);
     }
@@ -98,8 +139,9 @@ void enroll_to_course(string sid, string cid, vector<Student> &slist, vector<Cou
         cout << "The student has not been registed! Please add student to database." << endl;
         exit(1);
     }
-    else {
-        student->add_course(course,0.0);
+    else
+    {
+        student->add_course(course, 0.0);
     }
     //enroll student to course object
     if (clist.empty())
@@ -107,18 +149,15 @@ void enroll_to_course(string sid, string cid, vector<Student> &slist, vector<Cou
         cout << "The course does not exist! Please create course." << endl;
         exit(1);
     }
-    else {
+    else
+    {
         course->enroll(student);
     }
-
-
-
-    //enroll student to course
-
-    //
 }
 
-void withdraw_from_course(string sid, string cid, vector<Student> &slist, vector<Course> &clist) {}
+void withdraw_from_course(string sid, string cid, vector<Student> &slist, vector<Course> &clist)
+{
+}
 
 void update_grade(string sid, string cid, vector<Student> &slist, vector<Course> &clist) {}
 
