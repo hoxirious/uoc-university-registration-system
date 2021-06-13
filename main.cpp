@@ -6,6 +6,7 @@ int main(int argc, char **argv)
     vector<Student> slist;
     vector<Course> clist;
     int s_result = 0, c_result = 0;
+
     if (argc > 1)
     {
         do
@@ -18,11 +19,13 @@ int main(int argc, char **argv)
                 pressEnter();
             }
         } while (c_result == -1 || s_result == -1);
-        cout << s_result << " students added to databases from file" << endl;
 
+        cout << s_result << " students added to databases from file" << endl;
         for (int i = 0; i < s_result; i++)
             show_student_details(slist.at(i).get_ID(), slist);
+
         cout << "---------------------------------------------" << endl;
+        
         cout << c_result << " courses added to databases from file" << endl;
         for (int i = 0; i < c_result; i++)
             show_course_details(clist.at(i).get_cid(), clist);
@@ -78,7 +81,7 @@ int main(int argc, char **argv)
                 cout << "Nope";
             }
             input1.clear();
-            buffer_cleaner();
+            // buffer_cleaner();
             pressEnter();
             break;
 

@@ -2,7 +2,7 @@
 
 int Course::find_student(string id)
 {
-    for (int i = 0; i < student_list.size(); i++)
+    for (int i = 0; i <(int)student_list.size(); i++)
     {
         if (id == student_list.at(i).student->get_ID())
         {
@@ -72,7 +72,7 @@ string Course::course_info()
     si += enrolled;
     si.append("\nList of Student:\n");
     si.append("     Student name     Grade");
-    for (int i = 0; i < student_list.size(); ++i)
+    for (int i = 0; i < (int)student_list.size(); ++i)
     {
         si.append("   ");
         si.append(student_list[i].student->get_Fname());
@@ -82,4 +82,5 @@ string Course::course_info()
         si += student_list[i].grade;
         si.append("\n");
     }
+    return si; 
 }

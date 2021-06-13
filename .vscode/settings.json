@@ -8,6 +8,7 @@
         "fstream": "cpp",
         "atomic": "cpp",
         "memory": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "istream": "cpp"
     }
 }
