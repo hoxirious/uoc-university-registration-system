@@ -41,7 +41,6 @@ public:
 	void set_phone(string cell);
 	void set_ID(string uid);
 	void set_Date(Date bd);
-    void set_course_list (vector <course_record> course_list);
 
 	//getters
 	string get_Fname();
