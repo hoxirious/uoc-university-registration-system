@@ -6,7 +6,16 @@ using namespace std;
 int main_menu() {}
 
 // cleans leftovers in the input buffer after any input operation
-void buffer_cleaner() {}
+void buffer_cleaner() {
+    int ch;
+    do{
+        ch = getchar();
+    } while (ch != '\n' && ch != EOF);
+    if (ch == EOF) {
+        cout << "End of the input was detected... Quiting" << endl;
+        exit(1);
+    }
+}
 
 // function to open file using file stream and extract course information in the file. the extraction is based on the file format provided in the supporting materials document
 int load_coursefile(string filename, vector<Course> &clist)
