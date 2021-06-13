@@ -32,7 +32,7 @@ void buffer_cleaner()
     int ch;
     do
     {
-        ch = getchar();
+        ch = cin.get();
     } while (ch != '\n' && ch != EOF);
     if (ch == EOF)
     {

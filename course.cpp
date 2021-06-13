@@ -11,11 +11,21 @@ int Course::find_student(string id)
     }
     return -1;
 }
-Course::Course() {}
+Course::Course(): Cid(""), capacity(0), enrolled(0) {
+}
 
-Course::Course(string id, Date s, Date e, int max) {}
+Course::Course(string id, Date s, Date e, int max) {
+    Cid = id;
+    start = s;
+    end = e;
+    capacity = max;
+}
 
-string Course::get_cid() {}
+Course::~Course() {}
+
+string Course::get_cid() {
+    return Cid;
+}
 
 void Course::enroll(Student *S_obj)
 {
