@@ -67,9 +67,9 @@ string Course::course_info()
     si.append("\nEnd Date: ");
     si.append(end.date_string());
     si.append("\nCapacity: ");
-    si += capacity;
+    si += to_string(capacity);
     si.append("\nEnrolled: ");
-    si += enrolled;
+    si += to_string(enrolled);
     si.append("\nList of Student:\n");
     si.append("     Student name     Grade");
     for (int i = 0; i < (int)student_list.size(); ++i)

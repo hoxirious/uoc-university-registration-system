@@ -95,7 +95,7 @@ int load_studentfile(string filename, vector<Student> &slist)
 
     while (!infile.eof())
     {
-        infile >> fname >> lname >> cellp >> ucid >> yr >> m >> d;
+        infile  >> ucid >> fname >> lname >> cellp >> yr >> m >> d;
         Student *search = find_student(ucid, slist);
         if (search == NULL)
         {

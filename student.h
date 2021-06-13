@@ -6,6 +6,7 @@
 #include "date.h"
 #include "course.h"
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 

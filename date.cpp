@@ -30,16 +30,11 @@ int Date::get_day() {
 }
 
 string Date::date_string(){
-    string result("Date: ");
-    stringstream ss;
-    ss << get_month();
-    result += get_month();
-    result += "/";
-    ss << get_day();
-    result += get_day();
-    result += "/";
-    ss << get_year();
-    result += get_year();
-
+    string result("");
+    result.append(to_string(get_month()));
+    result.append("/");
+    result.append(to_string(get_day()));
+    result.append("/");
+    result.append(to_string(get_year()));
     return result;
 }

@@ -70,8 +70,9 @@ int main(int argc, char **argv)
             break;
 
         case 3:
-            // cin >> input1;
-            if (enrollment_file("enroll.txt", clist, slist) != -1)
+            cout << "Please enter the enroll.txt: ";
+            cin >> input1;
+            if (enrollment_file(input1, clist, slist) != -1)
             {
                 //TODOS Check the output of random samples using option 4 and 5
                 cout << "It works!";
@@ -86,6 +87,7 @@ int main(int argc, char **argv)
             break;
 
         case 4:
+            cout << "Please enter the course ID: ";
             cin >> input1;
             show_course_details(input1, clist);
             input1.clear();
@@ -94,6 +96,7 @@ int main(int argc, char **argv)
             break;
 
         case 5:
+            cout << "Please enter the student's ID: ";
             cin >> input1;
             show_student_details(input1, slist);
             input1.clear();
