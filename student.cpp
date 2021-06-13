@@ -9,7 +9,7 @@ int Student::find_course(string c_name)
             return i;
         }
     }
-    return 0;
+    return -1;
 }
 
 Student::Student(): Fname(""), Lname("") ,ID(""), phone("")  {
@@ -72,7 +72,7 @@ vector <course_record> Student::get_course_list()
 
 void Student::add_course(Course *course_to_add, double g)
 {
-    if (find_course(course_to_add->get_cid()) != -1)
+    if (find_course(course_to_add->get_cid()) == -1)
     {
         struct course_record new_course = {course_to_add, 0.0};
         course_list.push_back(new_course);

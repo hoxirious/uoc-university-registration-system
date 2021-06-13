@@ -29,7 +29,7 @@ string Course::get_cid() {
 
 void Course::enroll(Student *S_obj)
 {
-    if (find_student(S_obj->get_ID()))
+    if (find_student(S_obj->get_ID())==-1)
     {
         struct student_record new_record = {S_obj, 0.0};
         student_list.push_back(new_record);

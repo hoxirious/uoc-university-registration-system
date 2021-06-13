@@ -72,35 +72,38 @@ int main(int argc, char **argv)
         case 3:
             cout << "Please enter the enroll.txt: ";
             cin >> input1;
+            buffer_cleaner();
             if (enrollment_file(input1, clist, slist) != -1)
             {
-                //TODOS Check the output of random samples using option 4 and 5
-                cout << "It works!";
+                for (int i = 0; i < (int)slist.size(); i++)
+                    show_student_details(slist.at(i).get_ID(), slist);
+
+                for (int i = 0; i < (int)clist.size(); i++)
+                    show_course_details(clist.at(i).get_cid(), clist);
             }
             else
             {
                 cout << "Nope";
             }
             input1.clear();
-            // buffer_cleaner();
             pressEnter();
             break;
 
         case 4:
             cout << "Please enter the course ID: ";
             cin >> input1;
+            buffer_cleaner();
             show_course_details(input1, clist);
             input1.clear();
-            buffer_cleaner();
             pressEnter();
             break;
 
         case 5:
             cout << "Please enter the student's ID: ";
             cin >> input1;
+            buffer_cleaner();
             show_student_details(input1, slist);
             input1.clear();
-            buffer_cleaner();
             pressEnter();
             break;
 
@@ -157,6 +160,7 @@ int main(int argc, char **argv)
 
         case 11:
             modify_output(slist, clist, "enroll.txt");
+            break; 
         case 12:
             system("clear");
             exit(1);

@@ -30,6 +30,7 @@ void pressEnter()
 {
     cout << "\n<<< Press Enter to Continue>>>\n";
     cin.get();
+    system("clear");
 }
 
 // cleans leftovers in the input buffer after any input operation
@@ -164,8 +165,7 @@ int enrollment_file(string filename, vector<Course> &clist, vector<Student> &sli
         int num;
         // vector<string> line;
         in_stream >> id >> num;
-        cout << id << endl;
-        cout << num << endl;
+        buffer_cleaner();
         Student *found_student = find_student(id, slist);
         if (found_student != NULL)
         {
@@ -187,31 +187,12 @@ int enrollment_file(string filename, vector<Course> &clist, vector<Student> &sli
         }
         else
             cout << "Error: student not found" << endl;
-        
         counter++;
     }
     in_stream.close();
     return counter;
 }
 
-// while (getline(in_stream, ch))
-//         {
-//             if (ch.at(ch.length() - 1) == ' ')
-//             {
-//                 ch.erase(ch.length() - 1);
-//                 line.push_back(ch);
-//                 ch.clear();
-//             }
-//         }
-//         Student *found_student = find_student(line.at(0), slist);
-
-//         for (int i = 2; i < (2 + stoi(line.at(1))); i++)
-//         {
-//             Course *found_course = find_course(line.at(i), clist);
-//             c
-//             //TODOS g=0 here, maybe fix later
-//             found_student->add_course(found_course, 0);
-//         }
 
 // function that take course id and displays the string return of the course object
 void show_course_details(string c, vector<Course> &clist)
