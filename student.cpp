@@ -11,12 +11,14 @@ void Student::set_Lname(string ln) {}
 void Student::set_phone(string cell) {}
 void Student::set_ID(string uid) {}
 void Student::set_Date(Date bd) {}
+void Student::set_course_list(vector <course_record>) {}
 
 string Student::get_Fname() {}
 string Student::get_Lname() {}
 string Student::get_phone() {}
 string Student::get_ID() {}
 Date Student::get_Date() {}
+vector <course_record> Student::get_course_list() {}
 
 void Student::add_course(Course *course_to_add, double g){}
 void Student::drop_course(Course *course_to_drop){}

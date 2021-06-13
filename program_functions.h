@@ -3,6 +3,7 @@
 
 #include<iostream>
 #include<fstream>
+#include <iomanip>
 #include "course.h"
 #include "student.h"
 #include "date.h"
@@ -55,7 +56,7 @@ void update_grade(string sid, string cid, int new_grade, vector<Student> &slist,
 
 //11. save changes will modify courses.txt, students.txt, and enroll.txt to reflect any changes that were made during the program run
 //(i.e. new students added, course added, and new enrolments .... etc)
-void modify_output(vector<Student> &slist, vector<Course> &clist);
+void modify_output(vector<Student> &slist, vector<Course> &clist, string filename);
 
 // note: you can define supporting functions similar to find_student and find_course which do not correspond to an option in the main menu directly
 // note: you can define supporting functions similar to find_student and find_course which do not correspond to an option in the main menu directly

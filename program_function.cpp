@@ -1,5 +1,6 @@
 
 #include "program_functions.h"
+using namespace std;
 
 // function to show main menue and prompt the user to select input option
 int main_menu() {}
@@ -24,7 +25,8 @@ int load_coursefile(string filename, vector<Course> &clist)
     {
         infile >> ID >> be_y >> be_m >> be_d >> en_y >> en_m >> en_d >> max_c;
         Course *search = find_course(ID, clist);
-        if (search != NULL) {
+        if (search != NULL)
+        {
             Date be(be_y, be_m, be_d);
             Date en(en_y, en_m, en_d);
             Course new_course(ID, be, en, max_c);
@@ -84,13 +86,17 @@ Student *find_student(string id, vector<Student> &student_list)
 }
 
 // search function that finds a course object in the vector of students using the course id and returns a pointer to the course object
-Course *find_course(string cid, vector<Course> &course_list) {
+Course *find_course(string cid, vector<Course> &course_list)
+{
     Course *current = &course_list[0];
-    for (int i = 0; i < course_list.size(); ++i) {
-        if (current->get_cid() != cid) {
-            current = &course_list[i+1];
+    for (int i = 0; i < course_list.size(); ++i)
+    {
+        if (current->get_cid() != cid)
+        {
+            current = &course_list[i + 1];
         }
-        else {
+        else
+        {
             return current;
         }
     }
@@ -101,33 +107,33 @@ Course *find_course(string cid, vector<Course> &course_list) {
 int enrollment_file(string filename, vector<Course> &clist, vector<Student> &slist) {}
 
 // function that take course id and displays the string return of the course object
-void show_course_details(string c, vector<Course> &clist) {
-    Course *current = &clist[0];
-    for (int i = 0; i <clist.size(); ++i) {
-        if (current->get_cid() != c) {
-            current = &clist[i+1];
-        }
-        else {
-            cout << current->course_info();
-            break;
-        }
+void show_course_details(string c, vector<Course> &clist)
+{
+    Course *current = find_course(c, clist);
+    if (current == NULL)
+    {
+        cout << "Error: Course not found" << endl;
+        return;
     }
-    cout << "Error: Course not found" << endl;
+    else
+    {
+        cout << current->course_info() << endl;
+    }
 }
 
 // function that takes the student id and displays the string return of the student object info
-void show_student_details(string s, vector<Student> &slist) {
-    Student *current = &slist[0];
-    for (int i = 0; i < slist.size(); ++i) {
-        if(current->get_ID() != s) {
-            current = &slist[i+1];
-        }
-        else {
-            cout << current->student_info();
-            break;
-        }
+void show_student_details(string s, vector<Student> &slist)
+{
+    Student *current = find_student(s, slist);
+    if (current == NULL)
+    {
+        cout << "Error: Student not found" << endl;
+        return;
     }
-    cout << "Error: Student not Found" << endl;
+    else
+    {
+        cout << current->student_info() << endl;
+    }
 }
 
 // creates a new course by prompting the user to input required course information (not including enrolled students)
@@ -141,34 +147,41 @@ void enroll_to_course(string sid, string cid, vector<Student> &slist, vector<Cou
 
 //10. update student grade that takes a student id, course id, and grade to update the student grade in a given course. note that parameters needed
 // might be more than the three specified
-void update_grade(string sid, string cid, int new_grade, vector<Student> &slist, vector<Course> &clist) {
-    Student *current_s = &slist[0];
-    Course *current_c = &clist[0];
+void update_grade(string sid, string cid, int new_grade, vector<Student> &slist, vector<Course> &clist)
+{
 
-    for (int i = 0; i < slist.size(); ++i) {
-        if (current_s->get_ID() == sid ) {
-            for (int j = 0; j < clist.size(); ++i) {
-                if (current_c->get_cid() == cid) {
-                    current_s->modify_grade(current_c, new_grade);
-                    current_c->update_grade(sid, new_grade);
-                    break;
-                }
-                else {
-                    current_c = &clist[j+1];
-                }
-            }
-            cout << "Error: Course not found" << endl;
-            break; 
-        }
-        else {
-            current_s = &slist[i+1];
-        }
+    Student *current_s = find_student(sid, slist);
+
+    if (current_s == NULL)
+    {
+        cout << "Error: Student not found" << endl;
+        return;
     }
-    cout << "Error: Student not found" << endl;
-}
 
+    Course *current_c = find_course(cid, clist);
+
+    if (current_c == NULL)
+    {
+        cout << "Error: Course not found" << endl;
+        return;
+    }
+
+    current_s->modify_grade(current_c, new_grade);
+    current_c->update_grade(sid, new_grade);
+}
 //11. save changes will modify courses.txt, students.txt, and enroll.txt to reflect any changes that were made during the program run
 //(i.e. new students added, course added, and new enrolments .... etc)
-void modify_output(vector<Student> &slist, vector<Course> &clist) {
+void modify_output(vector<Student> &slist, vector<Course> &clist, string filename)
+{
+    ofstream outfile(filename);
 
+    for (int i = 0; i < slist.size(); ++i) {
+        outfile << slist.at(i).get_ID() << setw(2) << slist.at(i).get_course_list().size() << setw(2);
+        for (int j = 0; j < slist[i].get_course_list().size(); ++j) {
+            outfile << slist[i].get_course_list().at(j).reg_course->get_cid() << setw(2);
+        }
+        outfile << endl;
+    }
+    
+    outfile.close();
 }

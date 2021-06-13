@@ -31,6 +31,7 @@ class Course{
 		// no need to implement other getters or setters
 		string get_cid();
 		
+		
 		// adds a student to the student list. the student must exist as an object and the reference of the student object is passed to the function
 		// the student should not be already enrolled in the course
 		// this function must also add itself to the course_list of the student
@@ -50,7 +51,7 @@ class Course{
 		//Capacity: 70
 		//Enrolled: 0
 		//List of students:
-		//        Student name    Grade
+		//Student name    Grade
 
 		
 };
