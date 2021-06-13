@@ -26,6 +26,12 @@ int main_menu()
     return input;
 }
 
+void pressEnter()
+{
+    cout << "\n<<< Press Enter to Continue>>>\n";
+    cin.get();
+}
+
 // cleans leftovers in the input buffer after any input operation
 void buffer_cleaner()
 {
@@ -141,7 +147,8 @@ Course *find_course(string cid, vector<Course> &course_list)
 }
 
 // function to open enrollement file using a file stream and extracts student enrollment into courses information. must update the course objects to include the student in the student list, and update the student object to have the course in enrolled courses list
-int enrollment_file(string filename, vector<Course> &clist, vector<Student> &slist) {
+int enrollment_file(string filename, vector<Course> &clist, vector<Student> &slist)
+{
     ifstream in_stream("enroll.txt");
     int counter = 0;
     if (in_stream.fail())
