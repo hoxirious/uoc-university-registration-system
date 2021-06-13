@@ -1,5 +1,8 @@
-#include "program_functions.h"
 
+#include "program_functions.h"
+using namespace std;
+
+// function to show main menue and prompt the user to select input option
 int main_menu()
 {
     //System(“clear”);
@@ -23,29 +26,7 @@ int main_menu()
     return input;
 }
 
-// void filename_request(string s_filename, string c_filename, vector<Student> &slist, vector<Course> &clist)
-// {
-//     int s_result = 0, c_result = 0;
-//     while (s_result != -1)
-//     {
-//         cout << "Input students list file name" << endl;
-//         cin >> s_filename;
-//         s_result = load_studentfile(s_filename, slist);
-//         buffer_cleaner();
-//     }
-//     cout << s_result << " students added to databases from file" << endl;
-//     pressEnter();
-//     while (c_result != -1)
-//     {
-//         cout << "Input courses list file name" << endl;
-//         cin >> s_filename;
-//         c_result = load_coursefile(c_filename, clist);
-//         buffer_cleaner();
-//     }
-//     cout << c_result << " courses added to databases from file" << endl;
-//     pressEnter();
-// }
-
+// cleans leftovers in the input buffer after any input operation
 void buffer_cleaner()
 {
     int ch;
@@ -53,24 +34,26 @@ void buffer_cleaner()
     {
         ch = getchar();
     } while (ch != '\n' && ch != EOF);
-
     if (ch == EOF)
     {
-        printf("\nSorry, end of input was detected. Quitting.\n");
+        cout << "End of the input was detected... Quiting" << endl;
         exit(1);
     }
 }
 
+// function to open file using file stream and extract course information in the file. the extraction is based on the file format provided in the supporting materials document
 int load_coursefile(string filename, vector<Course> &clist)
 {
     ifstream infile(filename);
 
     if (infile.fail())
     {
-        return -1;
+        cout << "Error opening file... quiting" << endl;
+        exit(1);
     }
     string ID;
     int be_y, be_m, be_d, en_y, en_m, en_d, max_c;
+    int count = 0;
 
     while (!infile.eof())
     {
@@ -82,10 +65,11 @@ int load_coursefile(string filename, vector<Course> &clist)
             Date en(en_y, en_m, en_d);
             Course new_course(ID, be, en, max_c);
             clist.push_back(new_course);
+            count++;
         }
     }
     infile.close();
-    return 0;
+    return count;
 }
 
 // function to open file using file stream and extract student information in the file.
@@ -96,10 +80,12 @@ int load_studentfile(string filename, vector<Student> &slist)
 
     if (infile.fail())
     {
-        return -1;
+        cout << "Error opening file... quiting" << endl;
+        exit(1);
     }
     string fname, lname, cellp, ucid;
     int yr, m, d;
+    int count = 0;
 
     while (!infile.eof())
     {
@@ -110,16 +96,11 @@ int load_studentfile(string filename, vector<Student> &slist)
             Date dob(yr, m, d);
             Student new_student(fname, lname, cellp, ucid, dob);
             slist.push_back(new_student);
+            count++;
         }
     }
     infile.close();
-    return 0;
-}
-
-void pressEnter()
-{
-    cout << "\n<<< Press Enter to Continue>>>\n";
-    cin.get();
+    return count;
 }
 
 // search function that finds a student object in the vector of students using the student id and return a pointer to the student object
@@ -159,8 +140,8 @@ Course *find_course(string cid, vector<Course> &course_list)
     return NULL;
 }
 
-int enrollment_file(string filename, vector<Course> &clist, vector<Student> &slist)
-{
+// function to open enrollement file using a file stream and extracts student enrollment into courses information. must update the course objects to include the student in the student list, and update the student object to have the course in enrolled courses list
+int enrollment_file(string filename, vector<Course> &clist, vector<Student> &slist) {
     ifstream in_stream("enroll.txt");
     int counter = 0;
     if (in_stream.fail())
@@ -227,6 +208,7 @@ void show_student_details(string s, vector<Student> &slist)
     }
 }
 
+// creates a new course by prompting the user to input required course information (not including enrolled students)
 Course create_course()
 {
     string course_id;

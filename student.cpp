@@ -58,9 +58,46 @@ void Student::add_course(Course *course_to_add, double g)
 }
 void Student::drop_course(Course *course_to_drop)
 {
-    //TODOS if not found 
+    //TODOS if not found
     int pos = find_course(course_to_drop->get_cid()) + 1;
     course_list.erase(course_list.begin() + pos);
 }
-void Student::modify_grade(Course *course_to_add, double grade_update) {}
-string Student::student_info() {}
+
+void Student::modify_grade(Course *course_to_add, double grade_update)
+{
+    int j = find_course(course_to_add->get_cid());
+    if (j == -1)
+    {
+        cout << "Error: Course not found" << endl;
+        return;
+    }
+    course_list[j].grade = grade_update;
+}
+
+string Student::student_info()
+{
+    string si("Student ID: ");
+    si.append(ID);
+    si.append("\nFirst Name: ");
+    si.append(Fname);
+    si.append(" Last name: ");
+    si.append(Lname);
+    si.append("\nConstant number: ");
+    si.append(phone);
+    si.append("\nDate of Birth: ");
+    si += birthday.get_month();
+    si += '/';
+    si += birthday.get_day();
+    si += '/';
+    si += birthday.get_year();
+    si.append("\nCourse list:\n");
+    si.append("     Course Name     Grade\n");
+    for (int i = 0; i < course_list.size(); ++i)
+    {
+        si.append("     ");
+        si.append(course_list[i].reg_course->get_cid());
+        si.append("     ");
+        si += course_list[i].grade;
+        si.append("\n");
+    }
+}
