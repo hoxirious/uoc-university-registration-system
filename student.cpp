@@ -1,12 +1,15 @@
 #include "student.h"
 
-int Student::find_course(string c_name) {
-    for(int i=0; i<course_list.size(); i++) {
-        if(c_name == course_list.at(i).reg_course->get_cid()){
-            return 1; 
+int Student::find_course(string c_name)
+{
+    for (int i = 0; i < course_list.size(); i++)
+    {
+        if (c_name == course_list.at(i).reg_course->get_cid())
+        {
+            return i;
         }
     }
-    return 0; 
+    return 0;
 }
 
 Student::Student() {}
@@ -18,7 +21,7 @@ void Student::set_Lname(string ln) {}
 void Student::set_phone(string cell) {}
 void Student::set_ID(string uid) {}
 void Student::set_Date(Date bd) {}
-void Student::set_course_list(vector <course_record>) {}
+void Student::set_course_list(vector<course_record>) {}
 
 string Student::get_Fname()
 {
@@ -43,7 +46,7 @@ Date Student::get_Date()
 
 void Student::add_course(Course *course_to_add, double g)
 {
-    if (find_course(course_to_add->get_cid()))
+    if (find_course(course_to_add->get_cid()) != -1)
     {
         struct course_record new_course = {course_to_add, 0.0};
         course_list.push_back(new_course);
@@ -53,6 +56,11 @@ void Student::add_course(Course *course_to_add, double g)
         //TODOS printout already added
     }
 }
-void Student::drop_course(Course *course_to_drop) {}
+void Student::drop_course(Course *course_to_drop)
+{
+    //TODOS if not found 
+    int pos = find_course(course_to_drop->get_cid()) + 1;
+    course_list.erase(course_list.begin() + pos);
+}
 void Student::modify_grade(Course *course_to_add, double grade_update) {}
 string Student::student_info() {}

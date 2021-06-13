@@ -1,12 +1,15 @@
 #include "course.h"
 
-int Course::find_student(string id) {
-    for(int i=0; i<student_list.size(); i++) {
-        if(id == student_list.at(i).student->get_ID()){
-            return 1; 
+int Course::find_student(string id)
+{
+    for (int i = 0; i < student_list.size(); i++)
+    {
+        if (id == student_list.at(i).student->get_ID())
+        {
+            return i;
         }
     }
-    return 0; 
+    return -1;
 }
 
 Course::Course() {}
@@ -28,7 +31,12 @@ void Course::enroll(Student *S_obj)
     }
 }
 
-void Course::withdraw(string uid) {}
+void Course::withdraw(string uid)
+{
+    //TODOS if not found
+    int pos = find_student(uid) + 1;
+    student_list.erase(student_list.begin() + pos);
+}
 
 void Course::update_grade(string uid, double g) {}
 
