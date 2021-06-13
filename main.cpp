@@ -25,7 +25,7 @@ int main(int argc, char **argv)
             show_student_details(slist.at(i).get_ID(), slist);
 
         cout << "---------------------------------------------" << endl;
-        
+
         cout << c_result << " courses added to databases from file" << endl;
         for (int i = 0; i < c_result; i++)
             show_course_details(clist.at(i).get_cid(), clist);
@@ -70,8 +70,8 @@ int main(int argc, char **argv)
             break;
 
         case 3:
-            cin >> input1;
-            if (enrollment_file(input1, clist, slist) != -1)
+            // cin >> input1;
+            if (enrollment_file("enroll.txt", clist, slist) != -1)
             {
                 //TODOS Check the output of random samples using option 4 and 5
                 cout << "It works!";

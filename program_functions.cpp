@@ -149,53 +149,69 @@ Course *find_course(string cid, vector<Course> &course_list)
 // function to open enrollement file using a file stream and extracts student enrollment into courses information. must update the course objects to include the student in the student list, and update the student object to have the course in enrolled courses list
 int enrollment_file(string filename, vector<Course> &clist, vector<Student> &slist)
 {
-    ifstream in_stream("enroll.txt");
+    ifstream in_stream(filename);
     int counter = 0;
     if (in_stream.fail())
     {
         cout << "Error loading file: " << filename << endl;
         in_stream.clear();
-        exit(1);
+        return -1;
     }
 
     while (!in_stream.eof())
     {
-        string id;
-        int num; 
-        vector<string> line;
-        string course;
-        in_stream >> id >> num; 
-        Student *found_student = find_student(line.at(0), slist);
-        for(int i=0; i<num; i++){
-            in_stream>>course; 
-            Course *found_course = find_course(course, clist);
-            if(found_course!=NULL) {
-                
+        string id, course;
+        int num;
+        // vector<string> line;
+        in_stream >> id >> num;
+        cout << id << endl;
+        cout << num << endl;
+        Student *found_student = find_student(id, slist);
+        if (found_student != NULL)
+        {
+            for (int i = 0; i < num; i++)
+            {
+                in_stream >> course;
+                Course *found_course = find_course(course, clist);
+                if (found_course != NULL)
+                {
+                    found_student->add_course(found_course, 0.0);
+                    found_course->enroll(found_student);
+                }
+                else
+                {
+                    cout << "Error: course not found" << endl;
+                }
+                course.clear();
             }
         }
-        // while (getline(in_stream, ch))
-        // {
-        //     if (ch.at(ch.length() - 1) == ' ')
-        //     {
-        //         ch.erase(ch.length() - 1);
-        //         line.push_back(ch);
-        //         ch.clear();
-        //     }
-        // }
-        // Student *found_student = find_student(line.at(0), slist);
-
-        // for (int i = 2; i < (2 + stoi(line.at(1))); i++)
-        // {
-        //     Course *found_course = find_course(line.at(i), clist);
-        //     c
-        //     //TODOS g=0 here, maybe fix later
-        //     found_student->add_course(found_course, 0);
-        // }
-        // counter++;
+        else
+            cout << "Error: student not found" << endl;
+        
+        counter++;
     }
     in_stream.close();
     return counter;
 }
+
+// while (getline(in_stream, ch))
+//         {
+//             if (ch.at(ch.length() - 1) == ' ')
+//             {
+//                 ch.erase(ch.length() - 1);
+//                 line.push_back(ch);
+//                 ch.clear();
+//             }
+//         }
+//         Student *found_student = find_student(line.at(0), slist);
+
+//         for (int i = 2; i < (2 + stoi(line.at(1))); i++)
+//         {
+//             Course *found_course = find_course(line.at(i), clist);
+//             c
+//             //TODOS g=0 here, maybe fix later
+//             found_student->add_course(found_course, 0);
+//         }
 
 // function that take course id and displays the string return of the course object
 void show_course_details(string c, vector<Course> &clist)
