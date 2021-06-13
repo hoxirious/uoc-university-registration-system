@@ -163,7 +163,6 @@ int enrollment_file(string filename, vector<Course> &clist, vector<Student> &sli
     {
         string id, course;
         int num;
-        // vector<string> line;
         in_stream >> id >> num;
         buffer_cleaner();
         Student *found_student = find_student(id, slist);
@@ -233,14 +232,18 @@ Course create_course()
     int capacity;
     cout << "Course ID: ";
     cin >> course_id;
+    buffer_cleaner();
+    cout << "Enter start date (yyyy mm dd): ";
     cin >> syear >> smonth >> sdate;
+    buffer_cleaner();
     cout << "Enter end date (yyyy mm dd): ";
     cin >> eyear >> emonth >> edate;
+    buffer_cleaner();
     cout << "Enter Course Capacity:  ";
     cin >> capacity;
+    buffer_cleaner();
     //TODOS check existed
     Course new_course(course_id, Date(syear, smonth, sdate), Date(eyear, emonth, edate), capacity);
-
     return new_course;
 }
 Student create_student()

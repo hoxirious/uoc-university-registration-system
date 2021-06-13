@@ -33,6 +33,7 @@ void Course::enroll(Student *S_obj)
     {
         struct student_record new_record = {S_obj, 0.0};
         student_list.push_back(new_record);
+        enrolled = (int) student_list.size();
     }
     else
     {
@@ -45,6 +46,7 @@ void Course::withdraw(string uid)
     //TODOS if not found
     int pos = find_student(uid) + 1;
     student_list.erase(student_list.begin() + pos);
+    enrolled = (int) student_list.size();
 }
 
 void Course::update_grade(string uid, double g)

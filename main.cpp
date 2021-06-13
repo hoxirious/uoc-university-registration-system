@@ -108,12 +108,16 @@ int main(int argc, char **argv)
             break;
 
         case 6:
-            create_course();
+            clist.push_back(create_course());
+            for (int i = 0; i < (int)slist.size(); i++)
+                    show_student_details(slist.at(i).get_ID(), slist);
             pressEnter();
             break;
 
         case 7:
-            create_student();
+            slist.push_back(create_student());
+            for (int i = 0; i < (int)slist.size(); i++)
+                    show_student_details(slist.at(i).get_ID(), slist);
             pressEnter();
             break;
 
