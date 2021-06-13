@@ -2,7 +2,7 @@
 
 int Student::find_course(string c_name)
 {
-    for (int i = 0; i < course_list.size(); i++)
+    for (int i = 0; i < (int)course_list.size(); i++)
     {
         if (c_name == course_list.at(i).reg_course->get_cid())
         {
@@ -114,7 +114,7 @@ string Student::student_info()
     si.append(birthday.date_string());
     si.append("\nCourse list:\n");
     si.append("     Course Name     Grade\n");
-    for (int i = 0; i < course_list.size(); ++i)
+    for (int i = 0; i < (int)course_list.size(); ++i)
     {
         si.append("     ");
         si.append(course_list[i].reg_course->get_cid());
@@ -122,4 +122,5 @@ string Student::student_info()
         si += course_list[i].grade;
         si.append("\n");
     }
+    return si;
 }

@@ -55,7 +55,7 @@ int load_coursefile(string filename, vector<Course> &clist)
     if (infile.fail())
     {
         cout << "Error opening file... quiting" << endl;
-        exit(1);
+        return -1;
     }
     string ID;
     int be_y, be_m, be_d, en_y, en_m, en_d, max_c;
@@ -65,7 +65,7 @@ int load_coursefile(string filename, vector<Course> &clist)
     {
         infile >> ID >> be_y >> be_m >> be_d >> en_y >> en_m >> en_d >> max_c;
         Course *search = find_course(ID, clist);
-        if (search != NULL)
+        if (search == NULL)
         {
             Date be(be_y, be_m, be_d);
             Date en(en_y, en_m, en_d);
@@ -87,7 +87,7 @@ int load_studentfile(string filename, vector<Student> &slist)
     if (infile.fail())
     {
         cout << "Error opening file... quiting" << endl;
-        exit(1);
+        return -1;
     }
     string fname, lname, cellp, ucid;
     int yr, m, d;
@@ -97,7 +97,7 @@ int load_studentfile(string filename, vector<Student> &slist)
     {
         infile >> fname >> lname >> cellp >> ucid >> yr >> m >> d;
         Student *search = find_student(ucid, slist);
-        if (search != NULL)
+        if (search == NULL)
         {
             Date dob(yr, m, d);
             Student new_student(fname, lname, cellp, ucid, dob);
@@ -114,7 +114,7 @@ Student *find_student(string id, vector<Student> &student_list)
 {
     // Student *current = (Student*)malloc(sizeof(Student));
     Student *current = &student_list[0];
-    for (int i = 0; i < student_list.size(); ++i)
+    for (int i = 0; i < (int)student_list.size(); ++i)
     {
         if (current->get_ID() != id)
         {
@@ -132,7 +132,7 @@ Student *find_student(string id, vector<Student> &student_list)
 Course *find_course(string cid, vector<Course> &course_list)
 {
     Course *current = &course_list[0];
-    for (int i = 0; i < course_list.size(); ++i)
+    for (int i = 0; i < (int)course_list.size(); ++i)
     {
         if (current->get_cid() != cid)
         {
@@ -157,29 +157,41 @@ int enrollment_file(string filename, vector<Course> &clist, vector<Student> &sli
         in_stream.clear();
         exit(1);
     }
+
     while (!in_stream.eof())
     {
+        string id;
+        int num; 
         vector<string> line;
-        string ch;
-        while (getline(in_stream, ch))
-        {
-            if (ch.at(ch.length() - 1) == ' ')
-            {
-                ch.erase(ch.length() - 1);
-                line.push_back(ch);
-                ch.clear();
+        string course;
+        in_stream >> id >> num; 
+        Student *found_student = find_student(line.at(0), slist);
+        for(int i=0; i<num; i++){
+            in_stream>>course; 
+            Course *found_course = find_course(course, clist);
+            if(found_course!=NULL) {
+                
             }
         }
-        Student *found_student = find_student(line.at(0), slist);
+        // while (getline(in_stream, ch))
+        // {
+        //     if (ch.at(ch.length() - 1) == ' ')
+        //     {
+        //         ch.erase(ch.length() - 1);
+        //         line.push_back(ch);
+        //         ch.clear();
+        //     }
+        // }
+        // Student *found_student = find_student(line.at(0), slist);
 
-        for (int i = 2; i < (2 + stoi(line.at(1))); i++)
-        {
-            Course *found_course = find_course(line.at(i), clist);
-            found_course->enroll(found_student);
-            //TODOS g=0 here, maybe fix later
-            found_student->add_course(found_course, 0);
-        }
-        counter++;
+        // for (int i = 2; i < (2 + stoi(line.at(1))); i++)
+        // {
+        //     Course *found_course = find_course(line.at(i), clist);
+        //     c
+        //     //TODOS g=0 here, maybe fix later
+        //     found_student->add_course(found_course, 0);
+        // }
+        // counter++;
     }
     in_stream.close();
     return counter;
@@ -231,6 +243,8 @@ Course create_course()
     cin >> capacity;
     //TODOS check existed
     Course new_course(course_id, Date(syear, smonth, sdate), Date(eyear, emonth, edate), capacity);
+
+    return new_course;
 }
 Student create_student()
 {
@@ -248,6 +262,7 @@ Student create_student()
     cin >> year >> month >> date;
     //TODOS check existed
     Student new_student(first, last, cell, uid, Date(year, month, date));
+    return new_student;
 }
 
 void enroll_to_course(string sid, string cid, vector<Student> &slist, vector<Course> &clist)
@@ -331,10 +346,10 @@ void modify_output(vector<Student> &slist, vector<Course> &clist, string filenam
 {
     ofstream outfile(filename);
 
-    for (int i = 0; i < slist.size(); ++i)
+    for (int i = 0; i < (int)slist.size(); ++i)
     {
-        outfile << slist.at(i).get_ID() << setw(2) << slist.at(i).get_course_list().size() << setw(2);
-        for (int j = 0; j < slist[i].get_course_list().size(); ++j)
+        outfile << slist.at(i).get_ID() << setw(2) << (int)slist.at(i).get_course_list().size() << setw(2);
+        for (int j = 0; j < (int)slist[i].get_course_list().size(); ++j)
         {
             outfile << slist[i].get_course_list().at(j).reg_course->get_cid() << setw(2);
         }
