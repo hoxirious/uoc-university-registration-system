@@ -59,7 +59,7 @@ int load_coursefile(string filename, vector<Course> &clist)
     {
         infile >> ID >> be_y >> be_m >> be_d >> en_y >> en_m >> en_d >> max_c;
         Course *search = find_course(ID, clist);
-        if (search != NULL)
+        if (search == NULL)
         {
             Date be(be_y, be_m, be_d);
             Date en(en_y, en_m, en_d);
@@ -91,7 +91,7 @@ int load_studentfile(string filename, vector<Student> &slist)
     {
         infile >> fname >> lname >> cellp >> ucid >> yr >> m >> d;
         Student *search = find_student(ucid, slist);
-        if (search != NULL)
+        if (search == NULL)
         {
             Date dob(yr, m, d);
             Student new_student(fname, lname, cellp, ucid, dob);
