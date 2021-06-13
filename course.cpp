@@ -71,15 +71,15 @@ string Course::course_info()
     si.append("\nEnrolled: ");
     si += to_string(enrolled);
     si.append("\nList of Student:\n");
-    si.append("     Student name     Grade");
+    si.append("Student name       Grade");
+    si.append("\n");
     for (int i = 0; i < (int)student_list.size(); ++i)
     {
-        si.append("   ");
         si.append(student_list[i].student->get_Fname());
-        si.append("");
+        si.append(" ");
         si.append(student_list[i].student->get_Lname());
-        si.append("   ");
-        si += student_list[i].grade;
+        si.append("     ");
+        si += to_string(student_list[i].grade);
         si.append("\n");
     }
     return si; 

@@ -119,7 +119,7 @@ string Student::student_info()
         si.append("     ");
         si.append(course_list[i].reg_course->get_cid());
         si.append("     ");
-        si += course_list[i].grade;
+        si += to_string(course_list[i].grade);
         si.append("\n");
     }
     return si;
