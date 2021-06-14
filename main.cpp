@@ -2,7 +2,7 @@
 
 int main(int argc, char **argv)
 {
-    cout << "Student Registration System: V1.0" << endl 
+    cout << "Student Registration System: V1.0" << endl
          << "Developement Team: Hy Huynh and Hao Nguyen" << endl
          << "Release Date: June 15th, 2021" << endl;
     pressEnter();
@@ -74,11 +74,11 @@ int main(int argc, char **argv)
             buffer_cleaner();
             if (enrollment_file(input1, clist, slist) != -1)
             {
-                cout<< "Success";
+                cout << "Successfully enrolled!";
             }
             else
             {
-                cout << "Nope";
+                cout << "Failed: Please input courses list/students list filenames";
             }
             input1.clear();
             pressEnter();
@@ -153,6 +153,7 @@ int main(int argc, char **argv)
 
         case 11:
             modify_output(slist, clist, "enroll.txt");
+            pressEnter();
             break;
         case 12:
             system("clear");
@@ -160,7 +161,7 @@ int main(int argc, char **argv)
             break;
 
         default:
-            cout << "\nNot a valid input1.\n";
+            cout << "\nNot a valid input.\n";
             pressEnter();
         }
     }
