@@ -1,6 +1,15 @@
 {
     "files.associations": {
         "xstring": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "iostream": "cpp",
+        "utility": "cpp",
+        "xutility": "cpp",
+        "fstream": "cpp",
+        "atomic": "cpp",
+        "memory": "cpp",
+        "string": "cpp",
+        "istream": "cpp",
+        "iosfwd": "cpp"
     }
 }

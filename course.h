@@ -5,6 +5,7 @@
 #include "student.h"
 #include <vector>
 
+
 class Student;
 
 struct student_record{
@@ -28,8 +29,9 @@ class Course{
 		Course(string id, Date s, Date e, int max);
 		~Course();
 		
-		// no need to implemetn other getters or setters
+		// no need to implement other getters or setters
 		string get_cid();
+		
 		
 		// adds a student to the student list. the student must exist as an object and the reference of the student object is passed to the function
 		// the student should not be already enrolled in the course
@@ -41,6 +43,7 @@ class Course{
 		
 		// modifies the grade of the student in the course. note that the grade must be updated in the course object and the corresponding student object
 		void update_grade(string uid, double g);
+		
 		//return course info
 		string course_info();
 		//Course ID: ENSF337
@@ -49,7 +52,7 @@ class Course{
 		//Capacity: 70
 		//Enrolled: 0
 		//List of students:
-		//        Student name    Grade
+		//Student name    Grade
 
 		
 };
