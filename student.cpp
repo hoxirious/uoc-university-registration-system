@@ -27,7 +27,6 @@ Student::Student(string first, string last, string cell, string uid, Date birth)
     set_Date(birth);
 }
 Student::~Student() {
-    delete &course_list;
 }
 
 void Student::set_Fname(string Fn)

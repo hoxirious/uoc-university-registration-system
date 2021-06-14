@@ -170,12 +170,14 @@ int enrollment_file(string filename, vector<Course> &clist, vector<Student> &sli
         {
             for (int i = 0; i < num_courses; i++)
             {
+                double grade; 
                 in_stream >> course;
                 Course *found_course = find_course(course, clist);
                 if (found_course != NULL)
                 {
-                    found_student->add_course(found_course, 0.0);
-                    found_course->enroll(found_student);
+                    in_stream >> grade;
+                    found_student->add_course(found_course, grade);
+                    found_course->enroll(found_student, grade);
                 }
                 else
                 {
@@ -282,7 +284,7 @@ void enroll_to_course(string sid, string cid, vector<Student> &slist, vector<Cou
     else
     {
         student->add_course(course, 0.0);
-        course->enroll(student);
+        course->enroll(student,0.0);
     }
 }
 

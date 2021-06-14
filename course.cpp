@@ -24,7 +24,6 @@ Course::Course(string id, Date s, Date e, int max)
 }
 
 Course::~Course() {
-    delete &student_list; 
 }
 
 string Course::get_cid()
@@ -32,11 +31,11 @@ string Course::get_cid()
     return Cid;
 }
 
-void Course::enroll(Student *S_obj)
+void Course::enroll(Student *S_obj,double grade)
 {
     if (find_student(S_obj->get_ID()) == -1)
     {
-        struct student_record new_record = {S_obj, 0.0};
+        struct student_record new_record = {S_obj, grade};
         student_list.push_back(new_record);
         enrolled = (int)student_list.size();
         cout << "Success: Course " << get_cid() << " has successfully enrolled student " << S_obj->get_Lname() << endl;
