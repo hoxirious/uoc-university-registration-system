@@ -2,7 +2,7 @@
 
 int Course::find_student(string id)
 {
-    for (int i = 0; i <(int)student_list.size(); i++)
+    for (int i = 0; i < (int)student_list.size(); i++)
     {
         if (id == student_list.at(i).student->get_ID())
         {
@@ -11,10 +11,12 @@ int Course::find_student(string id)
     }
     return -1;
 }
-Course::Course(): Cid(""), capacity(0), enrolled(0) {
+Course::Course() : Cid(""), capacity(0), enrolled(0)
+{
 }
 
-Course::Course(string id, Date s, Date e, int max) {
+Course::Course(string id, Date s, Date e, int max)
+{
     Cid = id;
     start = s;
     end = e;
@@ -23,28 +25,33 @@ Course::Course(string id, Date s, Date e, int max) {
 
 Course::~Course() {}
 
-string Course::get_cid() {
+string Course::get_cid()
+{
     return Cid;
 }
 
 void Course::enroll(Student *S_obj)
 {
-    if (find_student(S_obj->get_ID())==-1)
+    if (find_student(S_obj->get_ID()) == -1)
     {
         struct student_record new_record = {S_obj, 0.0};
         student_list.push_back(new_record);
+        enrolled = (int)student_list.size();
+        cout << "Success: Course " << get_cid() << " has successfully enrolled student " << S_obj->get_Lname() << endl;
     }
     else
     {
-        //TODOS printout it's been added
+        cout << "Failed: Course " << get_cid() << " has already enrolled student " << S_obj->get_Lname() << endl;
     }
 }
 
 void Course::withdraw(string uid)
 {
     //TODOS if not found
-    int pos = find_student(uid) + 1;
+    int pos = find_student(uid);
     student_list.erase(student_list.begin() + pos);
+    enrolled = (int)student_list.size();
+    cout << "Success: Course " << get_cid() << "has successfully withdrawn student " << uid << endl;
 }
 
 void Course::update_grade(string uid, double g)
@@ -82,5 +89,5 @@ string Course::course_info()
         si += to_string(student_list[i].grade);
         si.append("\n");
     }
-    return si; 
+    return si;
 }

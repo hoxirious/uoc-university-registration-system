@@ -85,6 +85,7 @@ int main(int argc, char **argv)
             break;
 
         case 4:
+
             cout << "Please enter the course ID: ";
             cin >> input1;
             buffer_cleaner();
@@ -94,6 +95,7 @@ int main(int argc, char **argv)
             break;
 
         case 5:
+
             cout << "Please enter the student's ID: ";
             cin >> input1;
             buffer_cleaner();
