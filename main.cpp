@@ -2,7 +2,10 @@
 
 int main(int argc, char **argv)
 {
-
+    cout << "Student Registration System: V1.0" << endl 
+         << "Developement Team: Hy Huynh and Hao Nguyen" << endl
+         << "Release Date: June 15th, 2021" << endl;
+    pressEnter();
     vector<Student> slist;
     vector<Course> clist;
     int s_result = 0, c_result = 0;
