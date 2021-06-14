@@ -24,38 +24,13 @@ int main(int argc, char **argv)
         } while (c_result == -1 || s_result == -1);
 
         cout << s_result << " students added to databases from file" << endl;
-        for (int i = 0; i < s_result; i++)
-            show_student_details(slist.at(i).get_ID(), slist);
 
         cout << "---------------------------------------------" << endl;
 
         cout << c_result << " courses added to databases from file" << endl;
-        for (int i = 0; i < c_result; i++)
-            show_course_details(clist.at(i).get_cid(), clist);
         pressEnter();
     }
-    else
-    {
-        string s_filename, c_filename;
-        while (s_result != -1)
-        {
-            cout << "Input students list file name" << endl;
-            cin >> s_filename;
-            s_result = load_studentfile(s_filename, slist);
-            buffer_cleaner();
-        }
-        cout << s_result << " students added to databases from file" << endl;
-        pressEnter();
-        while (c_result != -1)
-        {
-            cout << "Input students list file name" << endl;
-            cin >> s_filename;
-            c_result = load_studentfile(s_filename, slist);
-            buffer_cleaner();
-        }
-        cout << c_result << " courses added to databases from file" << endl;
-        pressEnter();
-    }
+
     while (1)
     {
         string input1, input2;
@@ -64,11 +39,32 @@ int main(int argc, char **argv)
         switch (main_menu())
         {
         case 1:
-
+            cout << "Input students list file name" << endl;
+            cin >> input1;
+            input3 = load_studentfile(input1, slist);
+            buffer_cleaner();
+            input1.clear();
+            if (input3 == -1)
+            {
+                pressEnter();
+                break;
+            }
+            cout << input3 << " students added to databases from file" << endl;
             pressEnter();
             break;
 
         case 2:
+            cout << "Input courses list file name" << endl;
+            cin >> input1;
+            input3 = load_coursefile(input1, clist);
+            buffer_cleaner();
+            input1.clear();
+            if (input3 == -1)
+            {
+                pressEnter();
+                break;
+            }
+            cout << input3 << " courses added to databases from file" << endl;
             pressEnter();
             break;
 
@@ -78,11 +74,7 @@ int main(int argc, char **argv)
             buffer_cleaner();
             if (enrollment_file(input1, clist, slist) != -1)
             {
-                for (int i = 0; i < (int)slist.size(); i++)
-                    show_student_details(slist.at(i).get_ID(), slist);
-
-                for (int i = 0; i < (int)clist.size(); i++)
-                    show_course_details(clist.at(i).get_cid(), clist);
+                cout<< "Success";
             }
             else
             {
@@ -112,18 +104,11 @@ int main(int argc, char **argv)
 
         case 6:
             clist.push_back(create_course());
-            for (int i = 0; i < (int)slist.size(); i++) {
-                show_course_details(clist.at(i).get_cid(), clist);
-            }
             pressEnter();
             break;
 
         case 7:
             slist.push_back(create_student());
-            for (int i = 0; i < (int)slist.size(); i++) {
-                show_student_details(slist.at(i).get_ID(), slist);
-            }
-            create_student();
             pressEnter();
             break;
 
@@ -133,8 +118,6 @@ int main(int argc, char **argv)
             cout << "Enter course ID (example ENSF337): ";
             cin >> input2;
             enroll_to_course(input1, input2, slist, clist);
-            show_student_details(input1, slist);
-            show_course_details(input2, clist);
             input1.clear();
             input2.clear();
             buffer_cleaner();
@@ -146,8 +129,6 @@ int main(int argc, char **argv)
             cout << "Enter course ID (example ENSF337): ";
             cin >> input2;
             withdraw_from_course(input1, input2, slist, clist);
-            show_student_details(input1, slist);
-            show_course_details(input2, clist);
             input1.clear();
             input2.clear();
             buffer_cleaner();
@@ -170,7 +151,7 @@ int main(int argc, char **argv)
 
         case 11:
             modify_output(slist, clist, "enroll.txt");
-            break; 
+            break;
         case 12:
             system("clear");
             exit(1);

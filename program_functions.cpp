@@ -55,7 +55,7 @@ int load_coursefile(string filename, vector<Course> &clist)
 
     if (infile.fail())
     {
-        cout << "Error opening file... quiting" << endl;
+        cout << "Error opening file: " << filename << endl;
         return -1;
     }
     string ID;
@@ -87,7 +87,7 @@ int load_studentfile(string filename, vector<Student> &slist)
 
     if (infile.fail())
     {
-        cout << "Error opening file... quiting" << endl;
+        cout << "Error opening file: " << filename << endl;
         return -1;
     }
     string fname, lname, cellp, ucid;
@@ -96,7 +96,7 @@ int load_studentfile(string filename, vector<Student> &slist)
 
     while (!infile.eof())
     {
-        infile  >> ucid >> fname >> lname >> cellp >> yr >> m >> d;
+        infile >> ucid >> fname >> lname >> cellp >> yr >> m >> d;
         Student *search = find_student(ucid, slist);
         if (search == NULL)
         {
@@ -163,7 +163,6 @@ int enrollment_file(string filename, vector<Course> &clist, vector<Student> &sli
     {
         string id, course;
         int num;
-        // vector<string> line;
         in_stream >> id >> num;
         buffer_cleaner();
         Student *found_student = find_student(id, slist);
@@ -192,7 +191,6 @@ int enrollment_file(string filename, vector<Course> &clist, vector<Student> &sli
     in_stream.close();
     return counter;
 }
-
 
 // function that take course id and displays the string return of the course object
 void show_course_details(string c, vector<Course> &clist)
@@ -233,14 +231,18 @@ Course create_course()
     int capacity;
     cout << "Course ID: ";
     cin >> course_id;
+    buffer_cleaner();
+    cout << "Enter start date (yyyy mm dd): ";
     cin >> syear >> smonth >> sdate;
+    buffer_cleaner();
     cout << "Enter end date (yyyy mm dd): ";
     cin >> eyear >> emonth >> edate;
+    buffer_cleaner();
     cout << "Enter Course Capacity:  ";
     cin >> capacity;
+    buffer_cleaner();
     //TODOS check existed
     Course new_course(course_id, Date(syear, smonth, sdate), Date(eyear, emonth, edate), capacity);
-
     return new_course;
 }
 Student create_student()
@@ -259,6 +261,7 @@ Student create_student()
     cin >> year >> month >> date;
     //TODOS check existed
     Student new_student(first, last, cell, uid, Date(year, month, date));
+    buffer_cleaner();
     return new_student;
 }
 
@@ -270,27 +273,12 @@ void enroll_to_course(string sid, string cid, vector<Student> &slist, vector<Cou
 
     if (student == NULL || course == NULL)
     {
-        cout << "The student or course is invalid." << endl;
-        exit(1);
-    }
-    //add course to student object
-    if (slist.empty())
-    {
-        cout << "The student has not been registed! Please add student to database." << endl;
-        exit(1);
+        cout << "The student or course is invalid. Please register first!" << endl;
+        return;
     }
     else
     {
         student->add_course(course, 0.0);
-    }
-    //enroll student to course object
-    if (clist.empty())
-    {
-        cout << "The course does not exist! Please create course." << endl;
-        exit(1);
-    }
-    else
-    {
         course->enroll(student);
     }
 }
