@@ -35,6 +35,7 @@ int main(int argc, char **argv)
     {
         string input1, input2;
         int input3;
+        double input4;
 
         switch (main_menu())
         {
@@ -143,8 +144,8 @@ int main(int argc, char **argv)
             cout << "Enter course ID (example ENSF337): ";
             cin >> input2;
             cout << "Enter modified grades: ";
-            cin >> input3;
-            update_grade(input1, input2, input3, slist, clist);
+            cin >> input4;
+            update_grade(input1, input2, input4, slist, clist);
             input1.clear();
             input2.clear();
             buffer_cleaner();
