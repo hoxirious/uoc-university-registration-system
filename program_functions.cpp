@@ -162,13 +162,13 @@ int enrollment_file(string filename, vector<Course> &clist, vector<Student> &sli
     while (!in_stream.eof())
     {
         string id, course;
-        int num;
-        in_stream >> id >> num;
-        buffer_cleaner();
+        int num_courses;
+        in_stream >> id >> num_courses;
         Student *found_student = find_student(id, slist);
+
         if (found_student != NULL)
         {
-            for (int i = 0; i < num; i++)
+            for (int i = 0; i < num_courses; i++)
             {
                 in_stream >> course;
                 Course *found_course = find_course(course, clist);
@@ -180,12 +180,15 @@ int enrollment_file(string filename, vector<Course> &clist, vector<Student> &sli
                 else
                 {
                     cout << "Error: course not found" << endl;
+                    return -1;
                 }
                 course.clear();
             }
         }
-        else
+        else{
             cout << "Error: student not found" << endl;
+            return -1; 
+        }
         counter++;
     }
     in_stream.close();

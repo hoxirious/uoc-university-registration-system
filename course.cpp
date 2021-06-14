@@ -23,7 +23,9 @@ Course::Course(string id, Date s, Date e, int max)
     capacity = max;
 }
 
-Course::~Course() {}
+Course::~Course() {
+    delete &student_list; 
+}
 
 string Course::get_cid()
 {
