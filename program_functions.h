@@ -63,7 +63,7 @@ void withdraw_from_course(string sid, string cid, vector<Student> &slist, vector
 
 //10. update student grade that takes a student id, course id, and grade to update the student grade in a given course. note that parameters needed
 // might be more than the three specified
-void update_grade(string sid, string cid, int new_grade, vector<Student> &slist, vector<Course> &clist);
+void update_grade(string sid, string cid, double new_grade, vector<Student> &slist, vector<Course> &clist);
 
 //11. save changes will modify courses.txt, students.txt, and enroll.txt to reflect any changes that were made during the program run
 //(i.e. new students added, course added, and new enrolments .... etc)
