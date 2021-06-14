@@ -109,15 +109,28 @@ int main(int argc, char **argv)
 
         case 6:
             clist.push_back(create_course());
+<<<<<<< HEAD
             for (int i = 0; i < (int)slist.size(); i++)
                     show_student_details(slist.at(i).get_ID(), slist);
+=======
+            for (int i = 0; i < (int)slist.size(); i++) {
+                show_course_details(clist.at(i).get_cid(), clist);
+            }
+>>>>>>> 4a92e88de2019669eaa1702762f13909fe117c38
             pressEnter();
             break;
 
         case 7:
             slist.push_back(create_student());
+<<<<<<< HEAD
             for (int i = 0; i < (int)slist.size(); i++)
                     show_student_details(slist.at(i).get_ID(), slist);
+=======
+            for (int i = 0; i < (int)slist.size(); i++) {
+                show_student_details(slist.at(i).get_ID(), slist);
+            }
+            create_student();
+>>>>>>> 4a92e88de2019669eaa1702762f13909fe117c38
             pressEnter();
             break;
 

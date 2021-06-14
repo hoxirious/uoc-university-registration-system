@@ -348,10 +348,11 @@ void modify_output(vector<Student> &slist, vector<Course> &clist, string filenam
 
     for (int i = 0; i < (int)slist.size(); ++i)
     {
-        outfile << slist.at(i).get_ID() << setw(2) << (int)slist.at(i).get_course_list().size() << setw(2);
+        outfile << slist.at(i).get_ID() << " " << (int)slist.at(i).get_course_list().size() << " ";
         for (int j = 0; j < (int)slist[i].get_course_list().size(); ++j)
         {
-            outfile << slist[i].get_course_list().at(j).reg_course->get_cid() << setw(2);
+            outfile << slist[i].get_course_list().at(j).reg_course->get_cid() << " "
+                    << setprecision(2) << slist[i].get_course_list().at(j).grade << " ";
         }
         outfile << endl;
     }
