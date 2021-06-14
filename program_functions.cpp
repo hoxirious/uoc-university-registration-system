@@ -58,6 +58,10 @@ int load_coursefile(string filename, vector<Course> &clist)
         cout << "Error opening file: " << filename << endl;
         return -1;
     }
+    else
+    {
+        cout << "Success opening file: " << filename << endl;
+    }
     string ID;
     int be_y, be_m, be_d, en_y, en_m, en_d, max_c;
     int count = 0;
@@ -89,6 +93,10 @@ int load_studentfile(string filename, vector<Student> &slist)
     {
         cout << "Error opening file: " << filename << endl;
         return -1;
+    }
+    else
+    {
+        cout << "Success opening file: " << filename << endl;
     }
     string fname, lname, cellp, ucid;
     int yr, m, d;

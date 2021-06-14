@@ -29,6 +29,12 @@ int main(int argc, char **argv)
             pressEnter();
         }
     }
+    else
+    {
+        cout << "Your command is not in a valid format" << endl
+             << "Using option 1 and 2 to enter filenames or restart with a proper command" << endl;
+        pressEnter();
+    }
 
     while (1)
     {
@@ -105,12 +111,20 @@ int main(int argc, char **argv)
             break;
 
         case 6:
+            input3 = clist.size();
             clist.push_back(create_course());
+            if((int)clist.size() == input3+1){
+                cout<<"Success create course";
+            }
             pressEnter();
             break;
 
         case 7:
+            input3 = slist.size();
             slist.push_back(create_student());
+            if((int)slist.size() == input3+1){
+                cout<<"Success add student to database";
+            }
             pressEnter();
             break;
 
@@ -153,6 +167,7 @@ int main(int argc, char **argv)
 
         case 11:
             modify_output(slist, clist, "enroll.txt");
+            cout<<"Saved changes!"<<endl;
             pressEnter();
             break;
         case 12:

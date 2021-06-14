@@ -23,7 +23,8 @@ Course::Course(string id, Date s, Date e, int max)
     capacity = max;
 }
 
-Course::~Course() {
+Course::~Course()
+{
 }
 
 string Course::get_cid()
@@ -31,7 +32,7 @@ string Course::get_cid()
     return Cid;
 }
 
-void Course::enroll(Student *S_obj,double grade)
+void Course::enroll(Student *S_obj, double grade)
 {
     if (find_student(S_obj->get_ID()) == -1)
     {
@@ -50,9 +51,15 @@ void Course::withdraw(string uid)
 {
     //TODOS if not found
     int pos = find_student(uid);
-    student_list.erase(student_list.begin() + pos);
-    enrolled = (int)student_list.size();
-    cout << "Success: Course " << get_cid() << "has successfully withdrawn student " << uid << endl;
+    if (pos != -1)
+    {
+        student_list.erase(student_list.begin() + pos);
+        enrolled = (int)student_list.size();
+        cout << "Success: Course " << get_cid() << "has successfully withdrawn student " << uid << endl;
+    }
+    else {
+        cout<< "Failed: Student "<< uid<< " is not in the course";
+    }
 }
 
 void Course::update_grade(string uid, double g)
@@ -63,7 +70,11 @@ void Course::update_grade(string uid, double g)
         cout << "Error: Course not found" << endl;
         return;
     }
-    student_list[j].grade = g;
+    else
+    {
+        student_list[j].grade = g;
+        cout << "Success: Changed student's grade to " << g << endl;
+    }
 }
 
 string Course::course_info()
