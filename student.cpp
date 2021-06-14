@@ -26,7 +26,9 @@ Student::Student(string first, string last, string cell, string uid, Date birth)
     set_ID(uid);
     set_Date(birth);
 }
-Student::~Student() {}
+Student::~Student()
+{
+}
 
 void Student::set_Fname(string Fn)
 {
@@ -83,19 +85,25 @@ void Student::add_course(Course *course_to_add, double g)
     {
         struct course_record new_course = {course_to_add, 0.0};
         course_list.push_back(new_course);
-        cout << "Success: Student " << get_Lname() << " has added course: " << course_to_add->get_cid()<<endl;
+        cout << "Success: Student " << get_Lname() << " has added course: " << course_to_add->get_cid() << endl;
     }
     else
     {
-        cout << "Failed: Student " << get_Lname() << " has already added course: " << course_to_add->get_cid()<<endl;
+        cout << "Failed: Student " << get_Lname() << " has already added course: " << course_to_add->get_cid() << endl;
     }
 }
 void Student::drop_course(Course *course_to_drop)
 {
     //TODOS if not found
     int pos = find_course(course_to_drop->get_cid());
-    course_list.erase(course_list.begin() + pos);
-    cout << "Success: Course " << course_to_drop->get_cid()<< "has been dropped"<<endl;
+    if (pos != -1)
+    {
+        course_list.erase(course_list.begin() + pos);
+        cout << "Success: Course " << course_to_drop->get_cid() << "has been dropped" << endl;
+    }
+    else {
+        cout <<"Failed: Course"<<course_to_drop->get_cid() << "has not been registered"<<endl;
+    }
 }
 
 void Student::modify_grade(Course *course_to_add, double grade_update)
@@ -106,7 +114,11 @@ void Student::modify_grade(Course *course_to_add, double grade_update)
         cout << "Error: Course not found" << endl;
         return;
     }
-    course_list[j].grade = grade_update;
+    else
+    {
+        course_list[j].grade = grade_update;
+        cout << "Success: Changes grade of course " << course_to_add->get_cid() << " to " << grade_update << endl;
+    }
 }
 
 string Student::student_info()

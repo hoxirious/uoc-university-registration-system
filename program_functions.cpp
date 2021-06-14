@@ -58,6 +58,10 @@ int load_coursefile(string filename, vector<Course> &clist)
         cout << "Error opening file: " << filename << endl;
         return -1;
     }
+    else
+    {
+        cout << "Success opening file: " << filename << endl;
+    }
     string ID;
     int be_y, be_m, be_d, en_y, en_m, en_d, max_c;
     int count = 0;
@@ -89,6 +93,10 @@ int load_studentfile(string filename, vector<Student> &slist)
     {
         cout << "Error opening file: " << filename << endl;
         return -1;
+    }
+    else
+    {
+        cout << "Success opening file: " << filename << endl;
     }
     string fname, lname, cellp, ucid;
     int yr, m, d;
@@ -162,30 +170,36 @@ int enrollment_file(string filename, vector<Course> &clist, vector<Student> &sli
     while (!in_stream.eof())
     {
         string id, course;
-        int num;
-        in_stream >> id >> num;
-        buffer_cleaner();
+        int num_courses;
+        in_stream >> id >> num_courses;
         Student *found_student = find_student(id, slist);
+
         if (found_student != NULL)
         {
-            for (int i = 0; i < num; i++)
+            for (int i = 0; i < num_courses; i++)
             {
+                double grade;
                 in_stream >> course;
                 Course *found_course = find_course(course, clist);
                 if (found_course != NULL)
                 {
-                    found_student->add_course(found_course, 0.0);
-                    found_course->enroll(found_student);
+                    in_stream >> grade;
+                    found_student->add_course(found_course, grade);
+                    found_course->enroll(found_student, grade);
                 }
                 else
                 {
                     cout << "Error: course not found" << endl;
+                    return -1;
                 }
                 course.clear();
             }
         }
         else
+        {
             cout << "Error: student not found" << endl;
+            return -1;
+        }
         counter++;
     }
     in_stream.close();
@@ -279,7 +293,7 @@ void enroll_to_course(string sid, string cid, vector<Student> &slist, vector<Cou
     else
     {
         student->add_course(course, 0.0);
-        course->enroll(student);
+        course->enroll(student, 0.0);
     }
 }
 
@@ -303,7 +317,7 @@ void withdraw_from_course(string sid, string cid, vector<Student> &slist, vector
 
 //10. update student grade that takes a student id, course id, and grade to update the student grade in a given course. note that parameters needed
 // might be more than the three specified
-void update_grade(string sid, string cid, int new_grade, vector<Student> &slist, vector<Course> &clist)
+void update_grade(string sid, string cid, double new_grade, vector<Student> &slist, vector<Course> &clist)
 {
 
     Student *current_s = find_student(sid, slist);
@@ -337,9 +351,16 @@ void modify_output(vector<Student> &slist, vector<Course> &clist, string filenam
         for (int j = 0; j < (int)slist[i].get_course_list().size(); ++j)
         {
             outfile << slist[i].get_course_list().at(j).reg_course->get_cid() << " "
-                    << setprecision(2) << slist[i].get_course_list().at(j).grade << " ";
+                    << slist[i].get_course_list().at(j).grade;
+            if (j != (int)slist[i].get_course_list().size() - 1)
+            {
+                outfile << " ";
+            }
         }
-        outfile << endl;
+        if (i != (int)slist.size() - 1)
+        {
+            outfile << endl;
+        }
     }
 
     outfile.close();
