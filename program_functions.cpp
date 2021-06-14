@@ -170,7 +170,7 @@ int enrollment_file(string filename, vector<Course> &clist, vector<Student> &sli
         {
             for (int i = 0; i < num_courses; i++)
             {
-                double grade; 
+                double grade;
                 in_stream >> course;
                 Course *found_course = find_course(course, clist);
                 if (found_course != NULL)
@@ -187,9 +187,10 @@ int enrollment_file(string filename, vector<Course> &clist, vector<Student> &sli
                 course.clear();
             }
         }
-        else{
+        else
+        {
             cout << "Error: student not found" << endl;
-            return -1; 
+            return -1;
         }
         counter++;
     }
@@ -284,7 +285,7 @@ void enroll_to_course(string sid, string cid, vector<Student> &slist, vector<Cou
     else
     {
         student->add_course(course, 0.0);
-        course->enroll(student,0.0);
+        course->enroll(student, 0.0);
     }
 }
 
@@ -342,9 +343,16 @@ void modify_output(vector<Student> &slist, vector<Course> &clist, string filenam
         for (int j = 0; j < (int)slist[i].get_course_list().size(); ++j)
         {
             outfile << slist[i].get_course_list().at(j).reg_course->get_cid() << " "
-                    << slist[i].get_course_list().at(j).grade << " ";
+                    << slist[i].get_course_list().at(j).grade;
+            if (j != (int)slist[i].get_course_list().size() - 1)
+            {
+                outfile << " ";
+            }
         }
-        outfile << endl;
+        if (i != (int)slist.size() - 1)
+        {
+            outfile << endl;
+        }
     }
 
     outfile.close();
