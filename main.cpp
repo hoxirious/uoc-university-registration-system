@@ -10,25 +10,24 @@ int main(int argc, char **argv)
     vector<Course> clist;
     int s_result = 0, c_result = 0;
 
-    if (argc > 1)
+    if (argc == 3)
     {
-        do
+        s_result = load_studentfile(argv[1], slist);
+        c_result = load_coursefile(argv[2], clist);
+        if (s_result == -1 || c_result == -1)
         {
-            s_result = load_studentfile(argv[1], slist);
-            c_result = load_coursefile(argv[2], clist);
-            if (s_result == -1 || c_result == -1)
-            {
-                cout << "Error: Input files are invalid";
-                pressEnter();
-            }
-        } while (c_result == -1 || s_result == -1);
+            cout << "Please use option 1 and 2 to input filenames.";
+            pressEnter();
+        }
+        else
+        {
+            cout << s_result << " students added to databases from file" << endl;
 
-        cout << s_result << " students added to databases from file" << endl;
+            cout << "---------------------------------------------" << endl;
 
-        cout << "---------------------------------------------" << endl;
-
-        cout << c_result << " courses added to databases from file" << endl;
-        pressEnter();
+            cout << c_result << " courses added to databases from file" << endl;
+            pressEnter();
+        }
     }
 
     while (1)
