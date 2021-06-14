@@ -120,7 +120,6 @@ int main(int argc, char **argv)
             cout << "Enter course ID (example ENSF337): ";
             cin >> input2;
             enroll_to_course(input1, input2, slist, clist);
-
             input1.clear();
             input2.clear();
             buffer_cleaner();
